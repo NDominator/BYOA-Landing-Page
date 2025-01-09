@@ -3,23 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
+    <title>{{title}} - Brandon Beery</title>
     <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/blog">Blog</a>
-        <a href="/about.html">About</a>
-        <a href="/faq.html">FAQ</a>
-    </nav>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">BB</div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/blog">Blog</a>
+                <a href="/about.html">About</a>
+                <a href="/faq.html">FAQ</a>
+            </div>
+            <div class="nav-buttons">
+                <a href="/contact" class="btn btn-outline">Contact me</a>
+                <a href="/blog" class="btn btn-primary">Read blog</a>
+            </div>
+        </nav>
+    </header>
 
     <main>
-        {{content}}
+        <div class="content-container">
+            {{content}}
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 Your Name</p>
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="logo">BB</div>
+                <p>&copy; 2024 Brandon Beery</p>
+            </div>
+            <div class="footer-links">
+                <a href="/about.html">About</a>
+                <a href="/blog">Blog</a>
+                <a href="/contact">Contact</a>
+                <a href="/faq.html">FAQ</a>
+            </div>
+        </div>
     </footer>
+    <script src="/scripts/main.js"></script>
 </body>
 </html> 

@@ -108,15 +108,17 @@ function generateBlogIndex(posts) {
     const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
     
     return `
-        <h1>Blog Posts</h1>
-        <ul>
-            ${sortedPosts.map(post => `
-                <li>
-                    <a href="${post.url}">${post.title}</a>
-                    <small>${post.date}</small>
-                </li>
-            `).join('')}
-        </ul>
+        <div class="content-container">
+            <h1>Blog Posts</h1>
+            <ul class="blog-list">
+                ${sortedPosts.map(post => `
+                    <li>
+                        <h2><a href="${post.url}">${post.title}</a></h2>
+                        <span class="date">${post.date}</span>
+                    </li>
+                `).join('')}
+            </ul>
+        </div>
     `;
 }
 

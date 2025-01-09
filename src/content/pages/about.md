@@ -7,7 +7,7 @@ title: About Me
 Hello! I'm Brandon Beery.
 ## What I Do
 
-I help coache
+I help coaches
 
 ## Skills
 

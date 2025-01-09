@@ -1,0 +1,17 @@
+[33mcommit 6739413827814e0bf5b2a0e5000ab70df6eeaf48[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Brandon Beery <penntrack@gmail.com>
+Date:   Wed Jan 8 20:25:24 2025 -0500
+
+    Updated site with modern dark theme and more responsive design
+
+M	build.js
+M	node_modules/.package-lock.json
+M	package-lock.json
+M	package.json
+M	public/about.html
+M	public/index.html
+M	public/styles/main.css
+M	src/content/pages/about.md
+D	src/content/pages/index.md
+A	src/index.html
+M	src/styles/main.css

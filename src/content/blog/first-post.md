@@ -3,16 +3,16 @@ title: My First Blog Post
 date: 2024-03-21
 ---
 
-# My First Blog Post
+# My 2AM thoughts
 
-Welcome to my blog! This is my first post, and I'm excited to start sharing my thoughts here.
+Welcome to my blog! This is straight from my brain to you.
 
 ## What This Blog Is About
 
 I'll be writing about various topics including:
-- Technology
-- Web Development
-- Personal Projects
-- Thoughts and Ideas
+- Coaching Philosophy
+- The Mental Side of Sports
+- Tech, tips, and tricks I've picked up across the years.
+- Neurology, Reflexive Performance Reset, Square1, and the like.
 
 Stay tuned for more content coming soon! 

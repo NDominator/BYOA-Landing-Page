@@ -3,33 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
+    <title>Blog - Brandon Beery</title>
     <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/blog">Blog</a>
-        <a href="/about.html">About</a>
-        <a href="/faq.html">FAQ</a>
-    </nav>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">BB</div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/blog">Blog</a>
+                <a href="/about.html">About</a>
+                <a href="/faq.html">FAQ</a>
+            </div>
+            <div class="nav-buttons">
+                <a href="/contact" class="btn btn-outline">Contact me</a>
+                <a href="/blog" class="btn btn-primary">Read blog</a>
+            </div>
+        </nav>
+    </header>
 
     <main>
-        
-        <h1>Blog Posts</h1>
-        <ul>
+        <div class="content-container">
             
-                <li>
-                    <a href="/blog/first-post.html">My First Blog Post</a>
-                    <small>2024-03-21</small>
-                </li>
-            
-        </ul>
+        <div class="content-container">
+            <h1>Blog Posts</h1>
+            <ul class="blog-list">
+                
+                    <li>
+                        <h2><a href="/blog/first-post.html">My First Blog Post</a></h2>
+                        <span class="date">2024-03-21</span>
+                    </li>
+                
+            </ul>
+        </div>
     
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 Your Name</p>
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="logo">BB</div>
+                <p>&copy; 2024 Brandon Beery</p>
+            </div>
+            <div class="footer-links">
+                <a href="/about.html">About</a>
+                <a href="/blog">Blog</a>
+                <a href="/contact">Contact</a>
+                <a href="/faq.html">FAQ</a>
+            </div>
+        </div>
     </footer>
+    <script src="/scripts/main.js"></script>
 </body>
 </html> 
