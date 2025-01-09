@@ -2,20 +2,31 @@ const fs = require('fs-extra');
 const path = require('path');
 const { marked } = require('marked');
 
+// Configure marked with heading IDs and disable mangling
+marked.use({ 
+    headerIds: true,
+    headerPrefix: '',
+    mangle: false
+});
+
 async function build() {
     // Ensure public directory exists
     await fs.ensureDir('public');
     await fs.ensureDir('public/blog');
+    await fs.ensureDir('public/assets');
 
     // Copy static assets
     await fs.copy('src/styles', 'public/styles');
     await fs.copy('src/scripts', 'public/scripts');
+    await fs.copy('src/assets', 'public/assets');
 
     // Copy index.html directly
     await fs.copy('src/index.html', 'public/index.html');
 
-    // Read template
-    const template = await fs.readFile('src/templates/base.html', 'utf-8');
+    // Read templates
+    const pageTemplate = await fs.readFile('src/templates/base.html', 'utf-8');
+    const blogTemplate = await fs.readFile('src/templates/blog-post.html', 'utf-8');
+    const newsletterPartial = await fs.readFile('src/templates/newsletter.html', 'utf-8');
 
     // Build pages (excluding index)
     const pagesDir = 'src/content/pages';
@@ -27,9 +38,10 @@ async function build() {
             const frontMatter = parseFrontMatter(content);
             const html = marked(frontMatter.content);
             
-            const outputHtml = template
+            const outputHtml = pageTemplate
                 .replace('{{title}}', frontMatter.title || 'My Site')
-                .replace('{{content}}', html);
+                .replace('{{content}}', html)
+                .replace('{{> newsletter}}', newsletterPartial);
 
             const outputPath = path.join('public', page.replace('.md', '.html'));
             await fs.writeFile(outputPath, outputHtml);
@@ -47,9 +59,11 @@ async function build() {
             const frontMatter = parseFrontMatter(content);
             const html = marked(frontMatter.content);
             
-            const outputHtml = template
+            const outputHtml = blogTemplate
                 .replace('{{title}}', frontMatter.title || 'Blog Post')
-                .replace('{{content}}', html);
+                .replace('{{date}}', formatDate(frontMatter.date))
+                .replace('{{content}}', html)
+                .replace('{{> newsletter}}', newsletterPartial);
 
             const outputPath = path.join('public/blog', post.replace('.md', '.html'));
             await fs.writeFile(outputPath, outputHtml);
@@ -63,9 +77,10 @@ async function build() {
     }
 
     // Create blog index page
-    const blogIndexHtml = template
+    const blogIndexHtml = pageTemplate
         .replace('{{title}}', 'Blog')
-        .replace('{{content}}', generateBlogIndex(blogPosts));
+        .replace('{{content}}', generateBlogIndex(blogPosts))
+        .replace('{{> newsletter}}', newsletterPartial);
 
     await fs.writeFile('public/blog/index.html', blogIndexHtml);
 }
@@ -104,6 +119,15 @@ function parseFrontMatter(content) {
     };
 }
 
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
+
 function generateBlogIndex(posts) {
     const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
     
@@ -114,7 +138,7 @@ function generateBlogIndex(posts) {
                 ${sortedPosts.map(post => `
                     <li>
                         <h2><a href="${post.url}">${post.title}</a></h2>
-                        <span class="date">${post.date}</span>
+                        <span class="date">${formatDate(post.date)}</span>
                     </li>
                 `).join('')}
             </ul>

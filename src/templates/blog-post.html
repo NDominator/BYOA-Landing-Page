@@ -25,9 +25,15 @@
     </header>
 
     <main>
-        <div class="content-container">
+        <article class="content-container blog-post">
+            <div class="blog-meta">
+                <span class="date">{{date}}</span>
+            </div>
             {{content}}
-        </div>
+            <div class="blog-footer">
+                <a href="/blog" class="btn btn-outline">← Back to all posts</a>
+            </div>
+        </article>
         {{> newsletter}}
     </main>
 
