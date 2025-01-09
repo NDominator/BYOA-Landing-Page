@@ -11,15 +11,18 @@ async function build() {
     await fs.copy('src/styles', 'public/styles');
     await fs.copy('src/scripts', 'public/scripts');
 
+    // Copy index.html directly
+    await fs.copy('src/index.html', 'public/index.html');
+
     // Read template
     const template = await fs.readFile('src/templates/base.html', 'utf-8');
 
-    // Build pages
+    // Build pages (excluding index)
     const pagesDir = 'src/content/pages';
     const pages = await fs.readdir(pagesDir);
 
     for (const page of pages) {
-        if (page.endsWith('.md')) {
+        if (page.endsWith('.md') && page !== 'index.md') {
             const content = await fs.readFile(path.join(pagesDir, page), 'utf-8');
             const frontMatter = parseFrontMatter(content);
             const html = marked(frontMatter.content);
@@ -28,10 +31,7 @@ async function build() {
                 .replace('{{title}}', frontMatter.title || 'My Site')
                 .replace('{{content}}', html);
 
-            const outputPath = path.join(
-                'public', 
-                page === 'index.md' ? 'index.html' : page.replace('.md', '.html')
-            );
+            const outputPath = path.join('public', page.replace('.md', '.html'));
             await fs.writeFile(outputPath, outputHtml);
         }
     }

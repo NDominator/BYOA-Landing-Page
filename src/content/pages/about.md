@@ -4,11 +4,10 @@ title: About Me
 
 # About Me
 
-Hello! I'm [Your Name], and this is my personal website.
-
+Hello! I'm Brandon Beery.
 ## What I Do
 
-[Write a brief description of what you do, your interests, or your professional background]
+I help coache
 
 ## Skills
 
